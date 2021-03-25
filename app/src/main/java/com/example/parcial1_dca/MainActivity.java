@@ -31,20 +31,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        vistaBtn=findViewById(R.id.vista);
-        confirmarBtn=findViewById(R.id.confirmar);
-        verde=findViewById(R.id.verde);
-        amarillo=findViewById(R.id.amarillo);
-        rojo=findViewById(R.id.rojo);
-        posX=findViewById(R.id.posX);
-        posY=findViewById(R.id.posY);
-        recordatorio=findViewById(R.id.recordatorio);
+        vistaBtn = findViewById(R.id.vista);
+        confirmarBtn = findViewById(R.id.confirmar);
+        verde = findViewById(R.id.verde);
+        amarillo = findViewById(R.id.amarillo);
+        rojo = findViewById(R.id.rojo);
+        posX = findViewById(R.id.posX);
+        posY = findViewById(R.id.posY);
+        recordatorio = findViewById(R.id.recordatorio);
 
-        colorElegido=false;
+        colorElegido = false;
 
         new Thread(
 
-                ()->{
+                () -> {
 
                     try {
                         Socket socket = new Socket("192.168.1.5", 5000);
@@ -69,72 +69,71 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void verdeButton(){
+    private void verdeButton() {
         verde.setOnClickListener(
-                v->{
-                    color="verde";
-                    colorElegido=true;
-                    Toast.makeText(this,"Verde",Toast.LENGTH_SHORT).show();
+                v -> {
+                    color = "verde";
+                    colorElegido = true;
+                    Toast.makeText(this, "Verde", Toast.LENGTH_SHORT).show();
                 }
         );
     }
 
-    private void amarilloButton(){
+    private void amarilloButton() {
         amarillo.setOnClickListener(
-                v->{
-                    color="amarillo";
-                    colorElegido=true;
-                    Toast.makeText(this,"Amarillo",Toast.LENGTH_SHORT).show();
+                v -> {
+                    color = "amarillo";
+                    colorElegido = true;
+                    Toast.makeText(this, "Amarillo", Toast.LENGTH_SHORT).show();
                 }
         );
     }
 
-    private void rojoButton(){
+    private void rojoButton() {
         rojo.setOnClickListener(
-                v->{
-                    color="rojo";
-                    colorElegido=true;
-                    Toast.makeText(this,"Rojo",Toast.LENGTH_SHORT).show();
+                v -> {
+                    color = "rojo";
+                    colorElegido = true;
+                    Toast.makeText(this, "Rojo", Toast.LENGTH_SHORT).show();
                 }
         );
     }
 
-    private void vistaButton(){
+    private void vistaButton() {
         vistaBtn.setOnClickListener(
-                v->{
+                v -> {
+
+                    confirmar = "no";
+                    String posx, posy, recor, data;
+                    posx = posX.getText().toString();
+                    posy = posY.getText().toString();
+                    recor = recordatorio.getText().toString();
+
+                    if (posx.isEmpty() || posy.isEmpty() || recor.isEmpty()) {
+
+                        Toast.makeText(this, "Digite todos los datos", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (colorElegido == false) {
+                        Toast.makeText(this, "Escoja un color", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    data = color + "," + posx + "," + posy + "," + recor + "," + confirmar;
+
+                    Log.e("Recordatorio= ", data);
+                    Gson gson = new Gson();
+
+                    String reJson = gson.toJson(data);
+
                     new Thread(
 
-                            ()->{
-                                confirmar="no";
-                                String posx, posy, recor, data;
-                                posx= posX.getText().toString();
-                                posy= posY.getText().toString();
-                                recor= recordatorio.getText().toString();
-
-
-                                if(posx==null || posy==null || recor==null || posx.isEmpty() || posy.isEmpty() || recor.isEmpty()){
-
-                                    Toast.makeText(this, "Digite todos los datos", Toast.LENGTH_SHORT).show();
-                                }else if (colorElegido=false){
-                                    Toast.makeText(this, "Escoja un color", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    data= color+"," + posx +"," + posy + "," + recor + "," + confirmar;
-
-                                    Log.e("Recordatorio= ", data);
-                                    Gson gson = new Gson();
-
-                                    String reJson = gson.toJson(data);
-
-                                    try {
-                                        bwriter.write(reJson+"\n");
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    try {
-                                        bwriter.flush();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
+                            () -> {
+                                try {
+                                    bwriter.write(reJson + "\n");
+                                    bwriter.flush();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
                             }
                     ).start();
@@ -142,48 +141,53 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    private void continuarButton(){
+    private void continuarButton() {
 
         confirmarBtn.setOnClickListener(
-                v->{
+                v -> {
+
+                    confirmar = "si";
+                    String posx, posy, recor, data;
+                    posx = posX.getText().toString();
+                    posy = posY.getText().toString();
+                    recor = recordatorio.getText().toString();
+
+                    if (posx.isEmpty() || posy.isEmpty() || recor.isEmpty()) {
+
+                        Toast.makeText(this, "Digite todos los datos", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (colorElegido == false) {
+                        Toast.makeText(this, "Escoja un color", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    data = color + "," + posx + "," + posy + "," + recor + "," + confirmar;
+
+                    Log.e("Recordatorio= ", data);
+                    Gson gson = new Gson();
+
+                    String reJson = gson.toJson(data);
+
+
                     new Thread(
 
-                            ()->{
-                                confirmar="si";
-                                String posx, posy, recor, data;
-                                posx= posX.getText().toString();
-                                posy= posY.getText().toString();
-                                recor= recordatorio.getText().toString();
-
-                                if(posx==null || posy==null || recor==null || posx.isEmpty() || posy.isEmpty() || recor.isEmpty()){
-
-                                    Toast.makeText(this, "Digite todos los datos", Toast.LENGTH_SHORT).show();
-                                }else if (colorElegido=false){
-                                    Toast.makeText(this, "Escoja un color", Toast.LENGTH_SHORT).show();
-                                }else {
-
-                                    data= color+"," + posx +"," + posy + "," + recor + "," + confirmar;
-
-                                    Log.e("Recordatorio= ", data);
-                                    Gson gson = new Gson();
-
-                                    String reJson = gson.toJson(data);
-
-                                    try {
-                                        bwriter.write(reJson+"\n");
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    try {
-                                        bwriter.flush();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    posX.setText("");
-                                    posY.setText("");
-                                    recordatorio.setText("");
-                                    color=null;
+                            () -> {
+                                try {
+                                    bwriter.write(reJson + "\n");
+                                    bwriter.flush();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
+
+                                runOnUiThread(
+                                        () -> {
+                                            posX.setText("");
+                                            posY.setText("");
+                                            recordatorio.setText("");
+                                            color = null;
+                                        }
+                                );
 
                             }
                     ).start();
