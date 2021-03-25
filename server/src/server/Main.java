@@ -17,6 +17,8 @@ public class Main extends PApplet {
 
 	private String recordatorio, colorGlobal;
 	private ArrayList <Recordatorio> recordatorioLista;
+	private boolean viewConfirmar;
+	private Recordatorio visualizacion;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -75,11 +77,19 @@ public class Main extends PApplet {
 		textAlign(CENTER);
 		textSize(10);
 		
+		
+		
 		for (int i = 0; i < recordatorioLista.size(); i++) {
 			
 			
 			recordatorioLista.get(i).pintarDatos();
 		}
+		
+		if (viewConfirmar) {
+			
+			visualizacion.pintarDatos();
+		}
+		
 	}
 	
 	public void organizarDatos() {
@@ -92,8 +102,17 @@ public class Main extends PApplet {
 		int posX = parseInt(datosLista[1]);
 		int posY = parseInt(datosLista[2]);
 		String texto = datosLista[3];
+		String confirmar= datosLista[4];
 		
-		recordatorioLista.add(new Recordatorio(color, posX, posY, texto, this));
+		if (confirmar.equals("si")) {
+			recordatorioLista.add(new Recordatorio(color, posX, posY, texto, this));
+			System.out.println("Guardado");
+		}else {
+			visualizacion = (new Recordatorio(color, posX, posY, texto, this));
+			viewConfirmar=true;
+			System.out.println("Previzualizando");
+		}
+		
 		
 	}
 	

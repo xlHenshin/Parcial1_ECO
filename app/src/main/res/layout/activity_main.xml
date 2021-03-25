@@ -10,9 +10,10 @@
         android:id="@+id/posY"
         android:layout_width="122dp"
         android:layout_height="49dp"
+        android:layout_marginStart="32dp"
         android:ems="10"
-        android:hint="Posición Y"
-        android:inputType="textPersonName"
+        android:hint="Posición X"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/posX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -57,20 +58,20 @@
 
     <Button
         android:id="@+id/verde"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Verde"
+        android:background="@drawable/greenbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/rojo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginEnd="32dp"
-        android:text="Rojo"
+        android:background="@drawable/redbutton"
         app:layout_constraintBottom_toBottomOf="@+id/amarillo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/amarillo"
@@ -78,29 +79,16 @@
 
     <Button
         android:id="@+id/amarillo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:text="Amarillo"
+        android:background="@drawable/amarillobutton"
         app:layout_constraintBottom_toBottomOf="@+id/verde"
         app:layout_constraintEnd_toStartOf="@+id/rojo"
         app:layout_constraintStart_toEndOf="@+id/verde"
         app:layout_constraintTop_toTopOf="@+id/verde"
         app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/posX"
-        android:layout_width="122dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Posición X"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/posY"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView"
@@ -144,4 +132,17 @@
         android:text="Recordatorio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/posX" />
+
+    <EditText
+        android:id="@+id/posX"
+        android:layout_width="122dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Posición X"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/posY"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,17 +19,20 @@ public class Recordatorio{
 	public void pintarDatos() {
 		
 		app.fill(255,255,255);
-		app.rect(posX, posY +25, 120, 50);
+		app.rect(posX, posY +25, 140, 50);
 		
 		if (color.equals("verde")) {
 			
 			app.fill(0,255,0);
 		}else if (color.equals("amarillo")) {
 			
-			app.fill(0,255,255);
-		}else {
+			app.fill(255,255,0);
+		}else if (color.equals("rojo")) {
 			
 			app.fill(255,0,0);
+		}else {
+			
+			app.fill(0);
 		}
 		app.ellipse(posX, posY, 25, 25);
 		
