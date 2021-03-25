@@ -26,7 +26,7 @@ public class Main extends PApplet {
 	}
 	
 	public void settings() {
-		size(500, 500);
+		size(700, 500);
 	}
 	
 	public void setup() {
@@ -55,7 +55,6 @@ public class Main extends PApplet {
 					Gson gson = new Gson();
 
 					recordatorio = gson.fromJson(mensajeRecibido, String.class);
-					System.out.println(recordatorio);
 					
 					organizarDatos();
 
